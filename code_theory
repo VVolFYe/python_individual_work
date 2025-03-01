@@ -1,1 +1,445 @@
+import functools as fc
+import math
+import time
+import random
+
+'''
+phone_number = input('Enter phone no.:')
+print('your phone number is', phone_number)
+result = phone_number.count('-')
+print(result)
+phone_number = phone_number.replace('-',' ')
+print(phone_number)
+'''
+'''
+name = input('enter name:')
+space_pos = name.find(' ')
+first_name_slice = slice(0, space_pos)
+last_name_slice = slice(space_pos + 1, None)
+
+first_name = name[first_name_slice]
+last_name = name[last_name_slice]
+
+print(first_name)
+print(last_name)
+'''
+
+'''
+#VALIDATE USER INPUT
+#1. <= 12 characters
+#2. no spaces
+#3. no digits
+
+test_username = input('Enter username: ')
+if ((' ' in test_username) or not test_username.isalpha() or len(test_username) > 12):
+    print('Not available')
+else:
+    print(f'Username: {test_username}')
+'''
+
+'''
+#print(help(str))
+replace_dict = str.maketrans ({'1':'0', '0':'1'})
+test_replace = 'tudor01'.translate(replace_dict)
+print(test_replace)
+'''
+
+
+'''
+credit_number = '1234-5678-9012-3456'
+credit_parts = credit_number.split('-')
+for part in credit_parts:
+    print(part)
+'''
+
+#credit_number = '1234-5678-9012-3456'
+#last_indexofdash = len(credit_number) - credit_number[::-1].find('-')
+#print(credit_number[last_indexofdash:])
+
+
+
+'''
+#FORMAT SPECIFIERS
+price1 = 3.14159
+price2 = -987.65
+price3 = 12.34
+
+print(f'price 1 is: ${price1:^+10.2f}')
+print(f'price 2 is: ${price2:^10}')
+print(f'price 3 is: ${price3:^10}')
+'''
+
+#luiza = 3333333.3333
+#print(f'{luiza:^,}')
+
+
+
+'''
+#Time counter program
+my_time = input('Enter the sleep time in seconds:')
+my_time = int(my_time)
+
+for x in range(my_time, 0, -1):
+    hours = x // 3600
+    minutes = (x // 60) % 60
+    seconds = x % 60
+    print(f"{hours:02d}:{minutes:02d}:{seconds:02d}")
+    time.sleep(1)
+print('Go!')
+'''
+
+
+#loops in loops
+'''
+for x in range(0,9):
+    for y in range(0,3):
+        print(f"{y + 1}:{x + 1}", end =' ')
+        time.sleep(0.1)
+    print(end='\n')
+'''
+
+'''
+rows = int(input('enter rows: '))
+columns = int(input('enter columns: '))
+for i in range(rows):
+    for j in range(columns):
+        print(f"{i+j}", end=' ')
+    print(end='\n')
+'''
+
+
+
+'''
+#Shopping cart program
+foods = list()
+prices = list()
+total = 0
+
+while True:
+    food = input('Enter a food: ')
+    if (food == ''):
+        break
+    price = input(f'Enter the price of {food}: $')
+    if price.isdigit():
+        price = float(price)
+    else:
+        break
+    if (price == None and (not food == '')):
+        break
+    else:
+        foods.append(food)
+        prices.append(price)
+
+for x in range(0,len(foods)):
+    total += prices[x]
+
+print('-----your cart----')
+for x in range(len(foods)):
+    res = ''
+    res = str(foods[x]) + ': $' + str(prices[x])
+    print(f'{res:^20}')
+
+print(f'The total is: ${total:.02f}')
+'''
+
+
+
+#2D COLLECTIONS
+'''
+lista1 = ['mere', 'pere', 'cacat', 'ceva']
+lista2 = [1,2,3,4,5,6,7,8,9,10]
+lista3 = [1.23, 4.23, 6.69]
+
+lista_2d = [lista1,lista2, lista3]
+print(lista_2d)
+
+maxim = max(len(lista1), len(lista2), len(lista3))
+
+for i in range(3):
+    for j in range(0,len(lista_2d[i])):
+        print(f'{lista_2d[i][j]:^10}', end='|')
+    print(end='\n')
+'''
+
+'''
+num_pad = ((1,2,3),
+           (4,5,6),
+           (7,8,9),
+           ('*',0,'#'))
+for row in num_pad:
+    for num in row:
+        print(num, end=' ')
+    print(end='\n')
+'''
+
+
+
+
+
+'''
+#QUIZ GAME
+options = ((('A: Niciuna'), ('B: 5'), ('C: 10'), ('D: Toate!')),
+           (('A: 0'), ('B: 5'), ('C: 10'), ('D: 20')),
+           (('A: Doamne fereste!'), ('B: Nu'), ('C: Da'), ('D: Aproare')),
+            (('A: La White la concert'), ('B: In baie cat se caca'), ('C: In somn'), ('D: Ruba nu transpira')))
+
+questions = (('Cate pule suge ruba? '),
+           ('Cata bere bea ruba in medie pe zi? '),
+           ('Este ruba cel mai unsuros om de pe lume? '),
+           ('Unde a transpirat ruba cel mai tare la Costinesti? '))
+
+answers = ('D', 'D', 'C', 'A')
+guesses = list()
+score = 0
+
+for x in range(len(questions)):
+    print(questions[x])
+    for i in range(4):
+        print(options[x][i], end = ' | ')
+    print(end = '\n\n')
+    answer = input('Select your asnwer: ')
+    guesses.append(answer.upper())
+    if (answer.upper() == answers[x]):
+        print('Raspuns corect!')
+        score+=1
+        time.sleep(0.5)
+    else:
+        print('Raspuns incorect', end = '\n\n')
+        time.sleep(1)
+
+for i in range(3, 0, -1):
+    print(f'Result in: {i}s')
+    time.sleep(1)
+print(end='\n\n')
+print(f'Your score is {score} / 4')
+
+count = 0
+for i in range(len(guesses)):
+    if (guesses[i] != answers[i]):
+        count = count + 1
+        print(end='\n\n')
+        print(f'The answer to the question `{questions[i]}` was {answers[i]}. You selected {guesses[i]}', end = '\n')
+
+if (count == 0):
+    print('You answered all the questions correctly!', end = '\n')
+else:
+print('Bafta data viitoare, fraiere', end='\n\n')
+'''
+
+
+
+
+#print(help(random))
+'''
+res = math.floor((random.random()) * 100) + 1
+#print(res)
+guess = int(input('GUESS THE NUMBER GAME\n----------------\nGuess a number: '))
+print(guess)
+count = 0
+while (guess != res):
+    if (guess > res):
+        guess = int(input('The number is lower! Guess again: '))
+    else:
+        guess = int(input('The number is higher! Guess again: '))
+    count+=1
+
+print(end='\n\n\n')
+print(f"Correct! The number was {guess}! It took you {count} guesses!", end='\n')
+'''
+
+'''
+def play_rock_paper_scissors():
+    options = ('rock', 'paper', 'scissors')
+    player1 = None
+    player2 = None
+    name_player1 = input('SELECT YOUR NAME: ')
+    player1 = int(input('Select your weapon: rock->1, paper->2, scissors->3'))
+    for i in range(20, 0, -1):
+        time.sleep(1)
+        print(f'Ask player 2 to come to the game. Time left: {i}')
+    name_player2 = input('SELECT YOUR NAME')
+    player2 = int(input('Select your weapon: rock->1, paper->2, scissors->3'))
+    print('AND THE WINNER IS...')
+    for i in range(10, 0, -1):
+        time.sleep(1)
+        print(f'{i}')
+
+    match player1:
+        case 1:
+            match player2:
+                case 1:
+                    print('---IT IS A DRAW---')
+                case 2:
+                    print(f'{name_player2} WON THE GAME')
+                case 3:
+                    print(f'{name_player1} WON THE GAME')
+        case 2:
+            match player2:
+                case 1:
+                    print(f'{name_player1} WON THE GAME')
+                case 2:
+                    print('---IT IS A DRAW---')
+                case 3:
+                    print(f'{name_player2} WON THE GAME')
+        case 3:
+            match player2:
+                case 1:
+                    print(f'{name_player1} WON THE GAME')
+                case 2:
+                    print(f'{name_player2} WON THE GAME')
+                case 3:
+                    print('---IT IS A DRAW---')
+
+play_rock_paper_scissors()
+'''
+
+'''
+dices = {
+    1: (
+    "  ┌───────┐",
+    "  │       │",
+    "  │   ●   │",
+    "  │       │",
+    "  └───────┘"),
+    2: (
+    "  ┌───────┐",
+    "  │       │",
+    "  │ ●   ● │",
+    "  │       │",
+    "  └───────┘"),
+    3: (
+    "  ┌───────┐",
+    "  │       │",
+    "  │●  ●  ●│",
+    "  │       │",
+    "  └───────┘"),
+    4: (
+    "  ┌───────┐",
+    "  │ ●   ● │",
+    "  │       │",
+    "  │ ●   ● │",
+    "  └───────┘"),
+    5: (
+    "  ┌───────┐",
+    "  │ ●   ● │",
+    "  │   ●   │",
+    "  │ ●   ● │",
+    "  └───────┘"),
+    6: (
+    "  ┌───────┐",
+    "  │ ●   ● │",
+    "  │ ●   ● │",
+    "  │ ●   ● │",
+    "  └───────┘")
+}
+
+def print_dice(dice):
+    for i in range(5):
+        print(dice[i])
+
+#Test-roll-dices 1->6
+#for i in range(1,7):
+#    print_dice(dices[i])
+
+def citire_numar_zaruri():
+    while True:
+        x = input('Enter the number of dices: ')
+        if x.isdigit():
+            x = int(x)
+            return x
+        else:
+            print('You must enter an integer')
+
+
+number_of_rolls = citire_numar_zaruri()
+sum = 0
+for i in range(number_of_rolls):
+    x = random.randrange(1,7)
+    print_dice(dices[x])
+    sum+=x
+
+print(f'The sum of the {number_of_rolls} dices is {sum}. The average roll is {sum/number_of_rolls:.2f}.')
+'''
+
+'''
+def net_price(list_price, discount = 0, tax = 0.05):
+    return list_price * (1 - discount) * (1 + tax)
+
+price = net_price(500, 0.1)
+print(f'the price is: ${price:.2f}')
+
+def count_time(end, start = 0):
+    for x in range(end, start + 1, -1):
+        print(f'Start in: {x}s')
+        time.sleep(1)
+    print('START')
+
+count_time(10)
+'''
+
+
+#KEYWORD ARGUMENTS
+'''
+def hello(title, first, last = '', greeting = 'Salutare'):
+    print(f'{greeting}, {title}{first} {last}!')
+hello(first='Badescu', title='Dumnezeu ')
+'''
+
+
+
+
+
+# *args & **kwargs (ARGUMENTS AND KEYWORD ARGUMENTS)
+# *args => TUPLE ------------- **kwags => DICTIONAR
+# Daca folosim si *args si **kwargs trebuie sa avem *args INAINTE de **kwargs
+'''
+def add(*args):
+    total = 0
+    for arg in args:
+        total+=arg
+    return total
+
+print(add(1,2,3,4,5,6))
+
+def display_name(*args):
+    for arg in args:
+        print(arg, end=' ')
+display_name('Tudor', 'Boscu', 'Dumnezeul', 'Tuturor')
+'''
+# **kwargs (keyword arguments)
+
+'''
+def print_address(**kwargs):
+    print('| ',end='')
+    for item in kwargs.items():
+        key, value = item
+        print(f'{key}: {value}',end=' | ')
+
+print_address(street='Gratz',
+              city='Resita',
+              judet='C-S',
+              tara='Romania')
+'''
+
+'''
+def combine_print(*args, **kwargs):
+    for x in range(2):
+        print() #pun cateva spatii ca sa pot citi mai usor
+    print('For: ', end='')
+    for x in args:
+        print(x,end=' ')
+    print()
+    print('Destination:')
+    for kwarg in kwargs.items():
+        key,value = kwarg
+        print (f'-->{key}: {value}')
+
+combine_print('Prof', 'Ovidiu', 'Badescu', 'Jr.', tara='Romania', judet = 'C-S', oras = 'Resita', cartier = 'Calnic')
+'''
+
+
+
+#ITERABLES
+
+
 
